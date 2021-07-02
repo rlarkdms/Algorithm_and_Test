@@ -1,12 +1,14 @@
+import sys
+
+sys.setrecursionlimit(10000)#이게 최대 깊이 탐색의 limit를 푸는 거.
+
 def dfs(x,y,a,b):
     global arr
     
-
     
-    if x>a or x<0 or y>b or y<0:
-        
+    if x>=a or x<0 or y>=b or y<0: 
         return 0
-    #print("X %d y %d" %(x,y))
+    
     arr[x][y]=0
     
     if arr[x+1][y]==1:
