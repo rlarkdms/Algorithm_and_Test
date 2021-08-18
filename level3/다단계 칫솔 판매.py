@@ -30,5 +30,6 @@ def solution(enroll, referral, seller, amount):
 
     for i in dict_answer:#연산이 끝내 값들을 append 해서 배열에 저장.
         answer.append(dict_answer[i])
+        
 
     return answer
