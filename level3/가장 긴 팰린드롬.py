@@ -16,32 +16,38 @@ def solution(s):
     else:
         return even_value
 
-def odd(word):#홀수
-    standard=1
-    arr=[]
+def odd(word):#홀수개의 답을 고를 때 사용.
+    standard=2
+    best_sum=0
     for i in range(1,len(word)-1):
         sum=1
-        if i <=(len(word)//2)-1:
-            standard+=1
+        if i<(len(word)//2):
+            
             for j in range(1,standard):
                 if word[i-j]==word[i+j]:
                     sum+=2
                 else:
                     break   
+            standard+=1
         else:    
+            #standard-=1
+            #print(standard)
+            if len(word)%2==0:#여기 왜 이러는지 모르겠는데 특이 조건이 있음... 길이가 짝수면 일찍히 standard-=1를 해야 함
+                standard-=1   
             for j in range(1,standard):
-                if word[i-j]==word[i+j]:
+                if word[i-j]==word[i+j]:#하나씩 비교
                     sum+=2
-                else:
+                else:#만약 안맞으면 바로 break로 나오고
                     break
-            standard-=1
-        arr.append(sum)  
-    return max(arr)
+            if len(word)%2==1:# 길이가 홀수면 Standard-=1를 뒤에 해야 함.
+                standard-=1
+            #print(sum)
+        best_sum=max(best_sum,sum)
+    return best_sum
 
-
-def even(word):#짝수
+def even(word):#짝수개의 답을 고를 때 사용.
     standard=1
-    arr=[]
+    best_sum=0
     for i in range(1,len(word)):
         sum=0
         if i <=(len(word)//2)-1:
@@ -56,8 +62,7 @@ def even(word):#짝수
                 if word[i-j-1]==word[i+j]:
                     sum+=2
                 else:
-                    break
+                    break#다르면 그냥 루프 빠져나오기
             standard-=1
-        arr.append(sum)     
-    
-    return max(arr)
+        best_sum=max(best_sum,sum)
+    return best_sum
