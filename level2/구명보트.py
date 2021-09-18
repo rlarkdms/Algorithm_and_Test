@@ -1,22 +1,24 @@
 def solution(people, limit):
     answer = 0
-    #켓츄크래용 캣츄 그래용 와이 쏘 시리어스~~~오 GD무대나 한번 더 봐야지~_~
-    #240 이하 
     people.sort()
-    count=0
-    #최대 두명만 가능함
-    #내가 보니까 앞에서 하나 뒤에서 하나 찾아서  둘이 더해서 없애고 남는거끼리 짝찾기해야함.
-    while len(people)!=0:
-            
-        for i in range(len(people)-1,0,-1):
-            if people[0]+people[i]<=limit:
-                people.pop(i)
-                people.pop(0)
-                answer+=1
-                break
-                
-        else:#내가 보니까 이부분 떄문에 시간오류나는 것 같은데...
-            people.pop(0)
+    if len(people)==1:#1은 웬만하면 다 예외처리식으로 하는게 좋음.
+        return 1
+    first=0
+    last=len(people)-1
+    
+    while True:
+        if last==first:#이 경우는 2번 케이스일때만 적용되는 경우 왜 1를 더하냐면 앞에 있던 나머지 하나도 결국은 더하는게 맞으니까.
             answer+=1
+            break
+        if last<first:#아래의 앞뒤로 한 경우라 끝난거고 1번 케이스일 때 적용되는 경우
+            break
             
+        if people[first]+people[last]<=limit:# 1번 케이스 2개를 보내는 방법으로 맨앞과 맨 뒤에서 하나씩 골라 보내기 
+            answer+=1
+            first+=1
+            last-=1
+        else:# 2번 케이스 가장 작은걸 보낼 수 없어서 맨 뒤에서 하나를 보내는 과정.
+            last-=1
+            answer+=1
+    
     return answer
