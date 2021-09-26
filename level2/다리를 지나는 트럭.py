@@ -1,28 +1,26 @@
+from collections import deque
 def solution(bridge_length, weight, truck_weights):
     answer = 0
-    bridge=[0]*(bridge_length-1)
-    time=1
+    bridge=deque()
+    truck_weights.reverse()#pop(0)을 하면 시간오래 걸리기 때문에 Reverse한 다음 올려두기.
+    count=0
+    for i in range(bridge_length):
+        bridge.append(0)
+    sum_value=0
     while True:
-        if not truck_weights and not bridge: #만약 배열 둘 다 비여있으면 break
-            print(time)
+        
+        if not truck_weights:#truck_weights가 없어지면 끝난 거임.
+            count+=bridge_length
             break
-    
-        if not truck_weights:#배열이 비여있으면
-            bridge.pop(0)#무조건 빼기만
-            #print(bridge)
-            time+=1
-        else:#truck_weight안에 값이 있으면
-            if sum(bridge)+truck_weights[0]<=weight:
-                bridge.pop(0)
-                bridge.append(truck_weights.pop(0))
-                time+=1
-            else:
-                bridge.pop(0)
-                bridge.append(0)
-                time+=1
+        if sum_value+truck_weights[-1]-bridge[0]<=weight:
+            standard=truck_weights.pop()# 트럭의 값을 빼고
+            bridge.append(standard)#넣고를 반복
+            sum_value-=bridge.popleft()#sum_value를 뺴기
+            sum_value+=standard
+            count+=1
+        else:
+            sum_value-=bridge.popleft()
+            bridge.append(0)
+            count+=1     
         
-        
-    
-    return time
-
-#하나가 효율성을 통과 못함 고쳐야함...ㅠ
+    return count
