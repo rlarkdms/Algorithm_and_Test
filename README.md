@@ -1,6 +1,17 @@
-# Algorithm_Programmers
-코딩테스트 준비
+# 코딩테스트와 직무역량시험
 
-백준과 프로그래머스 문제를 푸는 레포입니다.
+### 코딩테스트 준비영역
++ 구현
++ 그리디(Greedy Algorithm)
++ 투포인터
++ 이분탐색(Binary Search)
++ DP(Dynamic Programming)
++ DFS(Depth First Search)/BFS(Breadth First Search)
++ 최단경로(다익스트라,플로워셜 알고리즘)
++ 그래프(위상정렬,크루스칼)
 
-부족한 부분 : 그래프와 탐색
+### 직무역량시험영역
++ Network 
++ OS 
++ Cloud 
++ Architecture
